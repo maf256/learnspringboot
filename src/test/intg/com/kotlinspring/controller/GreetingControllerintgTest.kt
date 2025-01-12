@@ -1,6 +1,5 @@
 package com.kotlinspring.controller
 
-import com.ninjasquad.springmockk.MockkBean
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -17,12 +16,13 @@ class GreetingControllerIntgTest {
     @Autowired
     lateinit var webTestClient: WebTestClient
 
-
     @Test
     fun retrieveGreeting() {
-        val name = "John"
 
-        val result = webTestClient.get().uri("/v1/greetings/{name}", name)
+        val name = "dilip"
+
+        val result =webTestClient.get()
+            .uri("/v1/greetings/{name}", name)
             .exchange()
             .expectStatus().is2xxSuccessful
             .expectBody(String::class.java)
@@ -31,8 +31,6 @@ class GreetingControllerIntgTest {
         Assertions.assertEquals("$name, Hello from default profile", result.responseBody)
 
     }
-
-
 
 
 }
